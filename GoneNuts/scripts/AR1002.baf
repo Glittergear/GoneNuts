@@ -1,0 +1,10 @@
+//spawns the MQG at the Councel
+
+IF
+Global("GGNMQGspawner","GLOBAL",0)
+THEN
+RESPONSE #100
+CreateCreature("GGNMQG",[417.805],3)  // To choose your own coordinates, choose a spot in the game and press CTRL-X
+SetGlobal("GGNMQGspawner","GLOBAL",1)
+Continue()
+END

@@ -1,0 +1,10 @@
+//spawns the Sus Squirrel at Trademeet Center
+
+IF
+Global("GGNSqspawner","GLOBAL",0)
+THEN
+RESPONSE #100
+CreateCreature("GGNSq",[2000.1694],3)  // To choose your own coordinates, choose a spot in the game and press CTRL-X
+SetGlobal("GGNSqspawner","GLOBAL",1)
+Continue()
+END
