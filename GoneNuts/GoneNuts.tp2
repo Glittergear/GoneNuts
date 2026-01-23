@@ -1,6 +1,6 @@
 BACKUP ~weidu_external/GoneNuts/backup~
 AUTHOR ~Glittergear~
-VERSION ~1.1~ //journal entry update
+VERSION ~1.2~
 
 README ~GoneNuts/GoneNutsReadme.txt~
 
@@ -16,7 +16,7 @@ ALWAYS
 
 // Convert tra files in UTF8 if EE and let them in ANSI if oBG
 
-	ACTION_IF GAME_IS ~bgee eet~ BEGIN
+	ACTION_IF GAME_IS ~bg2ee eet~ BEGIN
 //  ACTION_DEFINE_ARRAY GoneNuts_noconvert BEGIN install END
 
 		ACTION_DEFINE_ARRAY GoneNuts_reload BEGIN setup JournalEntries END
@@ -39,7 +39,7 @@ ALWAYS
 END
 
 
-AUTO_TRA ~GoneNuts/Languages/%s~ //The "%s" reads in the chosen language folder via LANGUAGE. Currently there is only one.
+AUTO_TRA ~weidu_external/GoneNuts/Languages/autotra/%s~ //The "%s" reads in the chosen language folder via LANGUAGE. Currently there is only one.
 
 
 LANGUAGE ~English~
@@ -48,12 +48,12 @@ LANGUAGE ~English~
          ~GoneNuts/Languages/english/setup.tra~
 
 
-BEGIN ~GoneNuts Installation~
+BEGIN @1 /* GoneNuts Installation */
 DESIGNATED 0
 LABEL ~Gone-Nuts-Glittergear~
-REQUIRE_PREDICATE GAME_IS ~bg2ee tob bgt eet~ ~Need ToB, BGT, BG2EE or EET.~
+REQUIRE_PREDICATE GAME_IS ~bg2ee tob bgt eet~ @2 /* Need ToB, BGT, BG2EE or EET. */
 
-ADD_JOURNAL TITLE (@5099) @5100 @5101 @5102 @5103 USING ~GoneNuts/Languages/%s/JournalEntries.tra~
+ADD_JOURNAL TITLE (@5099) @5100 @5101 @5102 @5103 USING ~weidu_external/GoneNuts/Languages/%s/JournalEntries.tra~
 
 
 //scripts
@@ -67,21 +67,21 @@ COMPILE ~GoneNuts/Dialogues/INNKEEP.d~
 
 //new creatures
 COPY ~GoneNuts/creatures/GGNMQG.cre~ ~override/GGNMQG.cre~
-	SAY NAME1 ~Tannia~
-	SAY NAME2 ~Tannia~
+	SAY NAME1 @3 /* Tannia */
+	SAY NAME2 @3 /* Tannia */
 
 COPY ~GoneNuts/creatures/GGNSq.cre~ ~override/GGNSq.cre~
-	SAY NAME1 ~Strange Squirrel~
-	SAY NAME2 ~Strange Squirrel~
+	SAY NAME1 @4 /* Strange Squirrel */
+	SAY NAME2 @4 /* Strange Squirrel */
 
 
 //items
 COPY ~GoneNuts/items/GGNSqC.itm~ ~override/GGNSqC.itm~
-     SAY NAME1 ~Cloak~
-     SAY NAME2 ~Estelin's Intent~
-     SAY DESC ~This enchanted cloak was Estelin's first attempt at changing his world. But the enchantment wore off quicker than he liked, and so he decided to go for a more permanent solution. He was happy to give it to you--after all, he doesn't need it anymore. This cloak lets you polymorph into a squirrel once per day and doesn't disable your spellcasting.~
+     SAY NAME1 @5 /* Cloak */
+     SAY NAME2 @6 /* Estelin's Intent */
+     SAY DESC @7 /* This enchanted cloak was Estelin's first attempt at changing his world. But the enchantment wore off quicker than he liked, and so he decided to go for a more permanent solution. He was happy to give it to you--after all, he doesn't need it anymore. This cloak lets you polymorph into a squirrel once per day and doesn't disable your spellcasting. */
 
 COPY ~GoneNuts/items/GGNpoly.itm~ ~override/GGNpoly.itm~
-     SAY NAME1 ~Claws~
-     SAY NAME2 ~Claws~
-     SAY DESC ~These claws are sharp!~
+     SAY NAME1 @8 /* Claws */
+     SAY NAME2 @8 /* Claws */
+     SAY DESC @9 /* These claws are sharp! */
