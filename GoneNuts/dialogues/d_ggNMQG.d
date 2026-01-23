@@ -43,8 +43,7 @@ END
 
 IF ~~ THEN BEGIN 1D
 	SAY ~Thank you! He was last seen in Trademeet, but he’s disappeared! I.. probably shouldn’t tell you this, but if it helps… He likes to go to taverns. Perhaps a bit too much. I’d start there, if I were you. His name is Estelin.~
-IF ~~ THEN DO ~
-   SetGlobal("GGNMQ","GLOBAL",1) RevealAreaOnMap("AR2000") AddJournalEntry(@5100, QUEST)~ EXIT
+	IF ~~ THEN DO ~SetGlobal("GGNMQ","GLOBAL",1) RevealAreaOnMap("AR2000") AddJournalEntry(@5100, QUEST)~ EXIT
 END
 
 
@@ -55,17 +54,20 @@ IF ~~ THEN BEGIN 1E
 END
 
 IF ~~ THEN BEGIN 3
-	SAY ~I… well, I can’t force you. But I beg you to reconsider!~ IF ~~ THEN EXIT
+	SAY ~I… well, I can’t force you. But I beg you to reconsider!~
+	IF ~~ THEN EXIT
 END
 
 //started quest, haven't found Estelin yet
 IF ~Global("GGNMQ","GLOBAL",1)~ THEN BEGIN 10
-	SAY ~Please go to Trademeet and find out what happened to Estelin!~ IF ~~ THEN EXIT
+	SAY ~Please go to Trademeet and find out what happened to Estelin!~
+	IF ~~ THEN EXIT
 END
 
 //started quest, haven't found Estelin yet but talked to bartender
 IF ~Global("GGNMQ","GLOBAL",2)~ THEN BEGIN 20
-	SAY ~Please go to Trademeet and find out what happened to Estelin!~ IF ~~ THEN EXIT
+	SAY ~Please go to Trademeet and find out what happened to Estelin!~
+	IF ~~ THEN EXIT
 END
 
 //solved the mystery
@@ -76,6 +78,15 @@ END
 
 IF ~~ THEN BEGIN 31
 	SAY ~ He WHAT!? And wants to WHAT!? He's... he's gone nuts! Oh, gods, he's gone insane. Lost it completely. I guess... well, if he's happier this way... But you'll want your reward, won't you? I promised you 2,000 gold and this amulet. I need to think about some things. Goodbye, and thank you for your help.~
-IF ~~ THEN DO ~
-SetGlobal("GGNMQ","GLOBAL",4) AddJournalEntry(@5103, QUEST_DONE) GiveGoldForce(2000) GiveItemCreate("AMUL19",Player1,1,1,0) AddXPObject(Player1,5000) AddXPObject(Player2,5000) AddXPObject(Player3,5000) AddXPObject(Player4,5000) AddXPObject(Player5,5000) AddXPObject(Player6,5000) EscapeArea()~ EXIT
+	IF ~~ THEN DO ~SetGlobal("GGNMQ","GLOBAL",4)
+					AddJournalEntry(@5103, QUEST_DONE)
+					GiveGoldForce(2000)
+					GiveItemCreate("AMUL19",Player1,1,1,0)
+					AddXPObject(Player1,5000)
+					AddXPObject(Player2,5000)
+					AddXPObject(Player3,5000)
+					AddXPObject(Player4,5000)
+					AddXPObject(Player5,5000)
+					AddXPObject(Player6,5000)
+					EscapeArea()~ EXIT
 END

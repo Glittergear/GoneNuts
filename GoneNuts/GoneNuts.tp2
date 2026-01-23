@@ -1,21 +1,59 @@
-BACKUP ~GoneNuts/backup~
+BACKUP ~weidu_external/GoneNuts/backup~
 AUTHOR ~Glittergear~
 VERSION ~1.1~ //journal entry update
 
+README ~GoneNuts/GoneNutsReadme.txt~
 
-AUTO_TRA ~GoneNuts/translations/%s~ //The "%s" reads in the chosen language folder via LANGUAGE. Currently there is only one.
+ALWAYS
+
+    //Copies tra files into the autotra-folder (to leave the originals untouched)
+    DEFINE_ACTION_FUNCTION autotra_workaround BEGIN
+      COPY ~GoneNuts/Languages/english~			~weidu_external/GoneNuts/Languages/autotra/%LANGUAGE%~
+      COPY ~GoneNuts/Languages/%LANGUAGE%~			~weidu_external/GoneNuts/Languages/autotra/%LANGUAGE%~
+    END
+
+    LAF autotra_workaround END
+
+// Convert tra files in UTF8 if EE and let them in ANSI if oBG
+
+	ACTION_IF GAME_IS ~bgee eet~ BEGIN
+//  ACTION_DEFINE_ARRAY GoneNuts_noconvert BEGIN install END
+
+		ACTION_DEFINE_ARRAY GoneNuts_reload BEGIN setup JournalEntries END
+
+			LAF HANDLE_CHARSETS
+				INT_VAR
+				infer_charsets = 1
+				STR_VAR
+				tra_path = EVAL ~weidu_external/GoneNuts/Languages/autotra~
+				out_path = EVAL ~weidu_external/GoneNuts/Languages/autotra/UTF8~
+				iconv_path = ~GoneNuts/Languages/autotra/iconv~
+//				 noconvert_array = GoneNuts_noconvert
+				reload_array = GoneNuts_reload
+			END
+
+	// UTF8 only
+	COPY ~weidu_external/GoneNuts/Languages/autotra/UTF8/%LANGUAGE%~				~weidu_external/GoneNuts/Languages/autotra/%LANGUAGE%~
+	END
+
+END
+
+
+AUTO_TRA ~GoneNuts/Languages/%s~ //The "%s" reads in the chosen language folder via LANGUAGE. Currently there is only one.
 
 
 LANGUAGE ~English~
-         ~english~   
-         ~GoneNuts/translations/english/setup.tra~
-         ~GoneNuts/translations/english/JournalEntries.tra~
+         ~english~
+         ~GoneNuts/Languages/english/JournalEntries.tra~
+         ~GoneNuts/Languages/english/setup.tra~
 
 
 BEGIN ~GoneNuts Installation~
+DESIGNATED 0
+LABEL ~Gone-Nuts-Glittergear~
+REQUIRE_PREDICATE GAME_IS ~bg2ee tob bgt eet~ ~Need ToB, BGT, BG2EE or EET.~
 
-ADD_JOURNAL TITLE (@5099) @5100 @5101 @5102 @5103 USING ~GoneNuts/translations/english/JournalEntries.tra~
-
+ADD_JOURNAL TITLE (@5099) @5100 @5101 @5102 @5103 USING ~GoneNuts/Languages/%s/JournalEntries.tra~
 
 
 //scripts
@@ -38,12 +76,12 @@ COPY ~GoneNuts/creatures/GGNSq.cre~ ~override/GGNSq.cre~
 
 
 //items
-COPY ~GoneNuts/items/GGNSqC.itm~ ~override/GGNSqC.itm~ 
+COPY ~GoneNuts/items/GGNSqC.itm~ ~override/GGNSqC.itm~
      SAY NAME1 ~Cloak~
      SAY NAME2 ~Estelin's Intent~
      SAY DESC ~This enchanted cloak was Estelin's first attempt at changing his world. But the enchantment wore off quicker than he liked, and so he decided to go for a more permanent solution. He was happy to give it to you--after all, he doesn't need it anymore. This cloak lets you polymorph into a squirrel once per day and doesn't disable your spellcasting.~
 
-COPY ~GoneNuts/items/GGNpoly.itm~ ~override/GGNpoly.itm~ 
+COPY ~GoneNuts/items/GGNpoly.itm~ ~override/GGNpoly.itm~
      SAY NAME1 ~Claws~
      SAY NAME2 ~Claws~
      SAY DESC ~These claws are sharp!~
