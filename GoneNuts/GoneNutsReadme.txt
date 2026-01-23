@@ -19,6 +19,8 @@ jastey for helping me figure out journal entries
 CHANGELONG
 1.0 initial release
 1.1 Journal entry update
+1.2 Traification
+
 
 WALKTHROUGH
 	-Go to the Council of Six building and speak with Tannia. She should be there walking around
