@@ -53,7 +53,7 @@ DESIGNATED 0
 LABEL ~Gone-Nuts-Glittergear~
 REQUIRE_PREDICATE GAME_IS ~bg2ee tob bgt eet~ @2 /* Need ToB, BGT, BG2EE or EET. */
 
-ADD_JOURNAL TITLE (@5099) @5100 @5101 @5102 @5103 USING ~weidu_external/GoneNuts/Languages/%s/JournalEntries.tra~
+ADD_JOURNAL TITLE (@5099) @5100 @5101 @5102 @5103 USING ~weidu_external/GoneNuts/Languages/autotra/%s/JournalEntries.tra~
 
 
 //scripts
