@@ -16,14 +16,15 @@ ALWAYS
 
 // Convert tra files in UTF8 if EE and let them in ANSI if oBG
 
-	ACTION_IF GAME_IS ~bg2ee eet~ BEGIN
-//  ACTION_DEFINE_ARRAY GoneNuts_noconvert BEGIN install END
+	ACTION_IF NOT GAME_IS ~bg2ee eet~ BEGIN
+		ACTION_DEFINE_ARRAY GoneNuts_noconvert BEGIN setup END
 
-		ACTION_DEFINE_ARRAY GoneNuts_reload BEGIN setup JournalEntries END
+		ACTION_DEFINE_ARRAY GoneNuts_reload BEGIN JournalEntries END
 
 			LAF HANDLE_CHARSETS
 				INT_VAR
 				infer_charsets = 1
+				from_utf8 = 1
 				STR_VAR
 				tra_path = EVAL ~weidu_external/GoneNuts/Languages/autotra~
 				out_path = EVAL ~weidu_external/GoneNuts/Languages/autotra/UTF8~
@@ -41,12 +42,15 @@ END
 
 AUTO_TRA ~weidu_external/GoneNuts/Languages/autotra/%s~ //The "%s" reads in the chosen language folder via LANGUAGE. Currently there is only one.
 
-
 LANGUAGE ~English~
          ~english~
          ~GoneNuts/Languages/english/JournalEntries.tra~
          ~GoneNuts/Languages/english/setup.tra~
 
+LANGUAGE ~Simplified Chinese~
+         ~schinese~
+         ~GoneNuts/Languages/schinese/JournalEntries.tra~
+         ~GoneNuts/Languages/schinese/setup.tra~
 
 BEGIN @1 /* GoneNuts Installation */
 DESIGNATED 0
